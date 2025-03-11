@@ -1,0 +1,50 @@
+[project]
+name = "autogen-selector"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "autogen-agentchat>=0.4.8.2",
+    "autogen-ext>=0.4.8.2",
+    "azure-core>=1.32.0",
+    "azure-identity>=1.20.0",
+    "lagom>=2.7.5",
+    "openai>=1.65.5",
+    "python-dotenv>=1.0.1",
+    "tiktoken>=0.9.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.1.0",
+    "pyright>=1.1.396",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.25.3",
+    "pytest-cov>=6.0.0",
+    "pytest-mock>=3.14.0",
+    "ruff>=0.9.10",
+]
+
+[tool.ruff]
+exclude = ["typings"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "TID"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+exclude = ["typings", ".venv", ".vscode", ".git"]
+
+[tool.coverage.run]
+omit = [
+    "*/__init__.py",
+    "autogen_selector/hosting.py",
+    "autogen_selector/protocols/*",
+    "autogen_selector/main.py",
+    "autogen_selector/tools/tools.py"
+]
