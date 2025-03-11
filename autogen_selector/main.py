@@ -104,13 +104,17 @@ team = SelectorGroupChat(
 
 
 async def main():
-    await Console(
+    result = await Console(
         team.run_stream(
             task="Get the account ID and then get the saving balance "
             "and investment balance. Both saving and investment account have"
             "the same account ID. Sum the balances when they are available."
         )
     )
+
+    for message in result.messages:
+        if message.models_usage:
+            print(f"{message.source}: {message.models_usage}")
 
 
 if __name__ == "__main__":
